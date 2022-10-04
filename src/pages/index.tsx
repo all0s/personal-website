@@ -1,10 +1,15 @@
 import IndexPage from 'components/pages/IndexPage'
 import { POSTS_DIRECTORY } from 'modules/post/constants'
+import type { Post } from 'modules/post/types'
 import { getAllPosts } from 'modules/server/api'
 import type { NextPage } from 'next'
 
-const Index: NextPage = () => {
-  return <IndexPage />
+export type IndexProps = {
+  posts: Post[]
+}
+
+const Index: NextPage<IndexProps> = ({ posts }) => {
+  return <IndexPage posts={posts} />
 }
 
 export async function getStaticProps() {
