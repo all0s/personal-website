@@ -1,6 +1,6 @@
 export type PostMeta = {
   title: string
-  date: Date
+  date: string
   tags: string[]
 }
 
