@@ -3,6 +3,20 @@ import matter from 'gray-matter'
 import type { Post, PostMeta } from 'modules/post/types'
 import path from 'path'
 
+export function getAllPostIds(postsDirectory: string) {
+  const fileNames = fs.readdirSync(postsDirectory, 'utf8')
+
+  return fileNames.map((fileName) => {
+    const id = fileName.replace(/\.md$/, '')
+
+    return {
+      params: {
+        id,
+      },
+    }
+  })
+}
+
 type GetAllPostsOptions = {
   sortByDate?: 'asc' | 'desc'
 }
@@ -17,7 +31,7 @@ export function getAllPosts(
     const id = fileName.replace(/\.md$/, '')
 
     const fullPath = path.join(postsDirectory, fileName)
-    const fileContent = fs.readFileSync(fullPath)
+    const fileContent = fs.readFileSync(fullPath, 'utf8')
     const { data: meta, content } = matter(fileContent)
 
     return {
@@ -42,4 +56,20 @@ export function getAllPosts(
       return a < b ? 1 : -1
     }
   })
+}
+
+export function getPostById(postsDirectory: string, id: any): Post | null {
+  if (typeof id !== 'string') {
+    return null
+  }
+
+  const fullPath = path.join(postsDirectory, `${id}.md`)
+  const fileContent = fs.readFileSync(fullPath, 'utf8')
+  const { data: meta, content } = matter(fileContent)
+
+  return {
+    id,
+    meta: meta as PostMeta,
+    content,
+  }
 }
