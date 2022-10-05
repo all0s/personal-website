@@ -6,13 +6,12 @@ export type PostEntryProps = {
 }
 
 function PostEntry({ postMeta }: PostEntryProps) {
-  const { title, subtitle, date, tags } = postMeta
+  const { title, subtitle, date } = postMeta
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>{title}</h2>
       <div className={styles.date}>{date}</div>
-      <div>{tags.join(', ')}</div>
+      <h2 className={styles.title}>{title}</h2>
       <div className={styles.subtitle}>{subtitle}</div>
     </div>
   )

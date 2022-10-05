@@ -7,10 +7,6 @@ export type PostsProps = {
 }
 
 function Posts({ posts }: PostsProps) {
-  if (posts.length === 0) {
-    return null
-  }
-
   return (
     <div className={styles.container}>
       {posts.map((post) => (
