@@ -1,5 +1,8 @@
-import PostEntry from 'components/common/PostEntry'
+import Layout from 'components/common/Layout'
+import Posts from 'components/common/Posts'
 import type { Post } from 'modules/post/types'
+import { SITE_NAME } from 'modules/site/constants'
+import styles from './IndexPage.module.scss'
 
 export type IndexPageProps = {
   posts: Post[]
@@ -7,12 +10,12 @@ export type IndexPageProps = {
 
 function IndexPage({ posts }: IndexPageProps) {
   return (
-    <div>
-      <h1>Posts</h1>
-      {posts.map((post) => (
-        <PostEntry key={post.id} postMeta={post.meta} />
-      ))}
-    </div>
+    <Layout>
+      <div className={styles.container}>
+        <h1>{SITE_NAME}</h1>
+        <Posts posts={posts} />
+      </div>
+    </Layout>
   )
 }
 

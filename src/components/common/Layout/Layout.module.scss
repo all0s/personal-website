@@ -1,15 +1,21 @@
 @import '/src/styles/common/breakpoints.scss';
 
+$vertical-padding: 45px;
+$xs-horizontal-padding: 12px;
+
 .container {
   margin-left: auto;
   margin-right: auto;
+  padding: $vertical-padding $xs-horizontal-padding;
   width: $container-width-xs;
 
   @media (min-width: $screen-sm-min) {
+    padding: $vertical-padding 0;
     width: $container-width-sm;
   }
 
   @media (min-width: $screen-md-min) {
+    padding: $vertical-padding 0;
     width: $container-width-md;
   }
 
