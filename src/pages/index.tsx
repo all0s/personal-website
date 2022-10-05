@@ -1,8 +1,8 @@
 import IndexPage from 'components/pages/IndexPage'
 import { POSTS_DIRECTORY } from 'modules/post/constants'
 import type { Post } from 'modules/post/types'
-import { getAllPosts } from 'modules/server/api'
 import type { NextPage } from 'next'
+import { getAllPosts } from 'server/ssg'
 
 export type IndexProps = {
   posts: Post[]
