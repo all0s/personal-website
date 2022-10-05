@@ -1,0 +1,28 @@
+// 1. Breakpoints
+
+// 1.1 Small
+$screen-sm-min: 576px;
+$screen-sm-max: 767px;
+
+// 1.2 Medium
+$screen-md-min: 768px;
+$screen-md-max: 991px;
+
+// 1.3 Large
+$screen-lg-min: 992px;
+$screen-lg-max: 1199px;
+
+// 1.4 Extra large
+$screen-xl-min: 1200px;
+$screen-xl-max: 1399px;
+
+// 1.5 Extra extra large
+$screen-xxl-min: 1400px;
+
+// 2. Container width
+$container-width-xs: 100%;
+$container-width-sm: 540px;
+$container-width-md: 720px;
+$container-width-lg: 960px;
+$container-width-xl: 1140px;
+$container-width-xxl: 1320px;

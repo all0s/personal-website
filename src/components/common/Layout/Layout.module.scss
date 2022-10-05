@@ -1,0 +1,29 @@
+@import '/src/styles/common/breakpoints.scss';
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: $container-width-xs;
+
+  @media (min-width: $screen-sm-min) {
+    width: $container-width-sm;
+  }
+
+  @media (min-width: $screen-md-min) {
+    width: $container-width-md;
+  }
+
+  /*
+  @media (min-width: $screen-lg-min) {
+    width: $container-width-lg;
+  }
+
+  @media (min-width: $screen-xl-min) {
+    width: $container-width-xl;
+  }
+
+  @media (min-width: $screen-xxl-min) {
+    width: $container-width-xxl;
+  }
+  */
+}
