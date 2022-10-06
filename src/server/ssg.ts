@@ -2,6 +2,8 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import { POSTS_DIRECTORY } from 'modules/post/constants'
 import path from 'path'
+import { remark } from 'remark'
+import html from 'remark-html'
 
 import type { Post, PostMeta } from 'modules/post/types'
 
@@ -23,22 +25,28 @@ type GetAllPostsOptions = {
   sortByDate?: 'asc' | 'desc'
 }
 
-function getAllPosts(options: GetAllPostsOptions = {}): Post[] {
+async function getAllPosts(options: GetAllPostsOptions = {}): Promise<Post[]> {
   const fileNames = fs.readdirSync(POSTS_DIRECTORY)
 
-  const allPosts = fileNames.map((fileName) => {
+  const allPosts = await Promise.all(fileNames.map(async (fileName) => {
     const id = fileName.replace(/\.md$/, '')
 
     const fullPath = path.join(POSTS_DIRECTORY, fileName)
     const fileContent = fs.readFileSync(fullPath, 'utf8')
     const { data: meta, content } = matter(fileContent)
 
+    const processedContent = await remark()
+      .use(html)
+      .process(content)
+
+    const contentHtml = processedContent.toString()
+
     return {
       id,
       meta: meta as PostMeta,
-      content,
+      contentHtml,
     }
-  })
+  }))
 
   if (!options.sortByDate) {
     return allPosts
@@ -57,7 +65,7 @@ function getAllPosts(options: GetAllPostsOptions = {}): Post[] {
   })
 }
 
-function getPostById(id: any): Post | null {
+async function getPostById(id: any): Promise<Post | null> {
   if (typeof id !== 'string') {
     return null
   }
@@ -66,10 +74,16 @@ function getPostById(id: any): Post | null {
   const fileContent = fs.readFileSync(fullPath, 'utf8')
   const { data: meta, content } = matter(fileContent)
 
+  const processedContent = await remark()
+    .use(html)
+    .process(content)
+
+  const contentHtml = processedContent.toString()
+
   return {
     id,
     meta: meta as PostMeta,
-    content,
+    contentHtml,
   }
 }
 

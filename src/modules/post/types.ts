@@ -5,7 +5,7 @@ export type PostMeta = {
 }
 
 export type Post = {
-  content: string
+  contentHtml: string
   id: string
   meta: PostMeta
 }

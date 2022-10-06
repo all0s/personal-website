@@ -1,4 +1,5 @@
 import Layout from 'components/common/Layout'
+import PostContentHtml from 'components/common/PostContentHtml'
 import SiteDescription from 'components/common/SiteDescription'
 import { SITE_NAME } from 'modules/site/constants'
 import Link from 'next/link'
@@ -17,7 +18,7 @@ function PostsIdPage({ post }: PostsIdPageProps) {
   }
 
   const {
-    content,
+    contentHtml,
     meta: { date, title },
   } = post
 
@@ -32,7 +33,7 @@ function PostsIdPage({ post }: PostsIdPageProps) {
         <div className={styles.main}>
           <div className={styles.date}>{date}</div>
           <h2 className={styles.title}>{title}</h2>
-          <div>{content}</div>
+          <PostContentHtml html={contentHtml} />
         </div>
         <SiteDescription />
       </div>

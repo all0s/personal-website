@@ -22,7 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<PagesPostsIdProps> = async ({
   params,
 }) => {
-  const post = getPostById(params?.id)
+  const post = await getPostById(params?.id)
 
   return {
     props: {

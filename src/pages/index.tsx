@@ -13,7 +13,7 @@ const PagesIndex: NextPage<PagesIndexProps> = ({ posts }) => {
 }
 
 export const getStaticProps: GetStaticProps<PagesIndexProps> = async () => {
-  const posts = getAllPosts({ sortByDate: 'desc' })
+  const posts = await getAllPosts({ sortByDate: 'desc' })
 
   return {
     props: {
