@@ -2,6 +2,7 @@ import Layout from 'components/common/Layout'
 import Posts from 'components/common/Posts'
 import SiteDescription from 'components/common/SiteDescription'
 import { SITE_NAME } from 'modules/site/constants'
+import Link from 'next/link'
 
 import styles from './IndexPage.module.scss'
 
@@ -16,7 +17,11 @@ function IndexPage({ posts }: IndexPageProps) {
     <Layout>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1>{SITE_NAME}</h1>
+          <h1>
+            <Link href="/">
+              <a>{SITE_NAME}</a>
+            </Link>
+          </h1>
           <SiteDescription />
         </div>
         <Posts posts={posts} />
