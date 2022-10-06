@@ -1,8 +1,8 @@
 import PostsIdPage from 'components/pages/PostsIdPage'
-import { POSTS_DIRECTORY } from 'modules/post/constants'
-import type { Post } from 'modules/post/types'
-import type { GetServerSideProps, GetStaticPaths, NextPage } from 'next'
 import { getAllPostIds, getPostById } from 'server/ssg'
+
+import type { Post } from 'modules/post/types'
+import type { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 
 export type PagesPostsIdProps = {
   post: Post | null
@@ -14,15 +14,15 @@ const PagesPostsId: NextPage<PagesPostsIdProps> = ({ post }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: getAllPostIds(POSTS_DIRECTORY),
+    paths: getAllPostIds(),
     fallback: false,
   }
 }
 
-export const getStaticProps: GetServerSideProps<PagesPostsIdProps> = async ({
+export const getStaticProps: GetStaticProps<PagesPostsIdProps> = async ({
   params,
 }) => {
-  const post = getPostById(POSTS_DIRECTORY, params?.id)
+  const post = getPostById(params?.id)
 
   return {
     props: {

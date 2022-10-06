@@ -1,7 +1,8 @@
 import Avatar from 'components/base/Avatar'
-import { SITE_DESCRIPTION } from 'modules/site/constants'
-import styles from './SiteDescription.module.scss'
 import imageAvatar from 'images/avatar.jpg'
+import { SITE_DESCRIPTION } from 'modules/site/constants'
+
+import styles from './SiteDescription.module.scss'
 
 function SiteDescription() {
   return (

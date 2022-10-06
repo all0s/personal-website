@@ -1,5 +1,6 @@
 import type { Post } from 'modules/post/types'
 import Link from 'next/link'
+
 import styles from './PostEntry.module.scss'
 
 export type PostEntryProps = {

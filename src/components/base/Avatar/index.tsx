@@ -1,6 +1,8 @@
 import Image from 'next/image'
-import type { ImageProps } from 'next/image'
+
 import styles from './Avatar.module.scss'
+
+import type { ImageProps } from 'next/image'
 
 export type AvatarProps = {
   alt: ImageProps['alt']

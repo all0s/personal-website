@@ -1,10 +1,12 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import type { Post, PostMeta } from 'modules/post/types'
+import { POSTS_DIRECTORY } from 'modules/post/constants'
 import path from 'path'
 
-export function getAllPostIds(postsDirectory: string) {
-  const fileNames = fs.readdirSync(postsDirectory, 'utf8')
+import type { Post, PostMeta } from 'modules/post/types'
+
+function getAllPostIds() {
+  const fileNames = fs.readdirSync(POSTS_DIRECTORY)
 
   return fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '')
@@ -21,16 +23,13 @@ type GetAllPostsOptions = {
   sortByDate?: 'asc' | 'desc'
 }
 
-export function getAllPosts(
-  postsDirectory: string,
-  options: GetAllPostsOptions = {}
-): Post[] {
-  const fileNames = fs.readdirSync(postsDirectory)
+function getAllPosts(options: GetAllPostsOptions = {}): Post[] {
+  const fileNames = fs.readdirSync(POSTS_DIRECTORY)
 
   const allPosts = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '')
 
-    const fullPath = path.join(postsDirectory, fileName)
+    const fullPath = path.join(POSTS_DIRECTORY, fileName)
     const fileContent = fs.readFileSync(fullPath, 'utf8')
     const { data: meta, content } = matter(fileContent)
 
@@ -58,12 +57,12 @@ export function getAllPosts(
   })
 }
 
-export function getPostById(postsDirectory: string, id: any): Post | null {
+function getPostById(id: any): Post | null {
   if (typeof id !== 'string') {
     return null
   }
 
-  const fullPath = path.join(postsDirectory, `${id}.md`)
+  const fullPath = path.join(POSTS_DIRECTORY, `${id}.md`)
   const fileContent = fs.readFileSync(fullPath, 'utf8')
   const { data: meta, content } = matter(fileContent)
 
@@ -73,3 +72,5 @@ export function getPostById(postsDirectory: string, id: any): Post | null {
     content,
   }
 }
+
+export { getAllPostIds, getAllPosts, getPostById }

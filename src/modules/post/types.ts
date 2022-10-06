@@ -1,11 +1,11 @@
 export type PostMeta = {
-  title: string
-  subtitle: string
   date: string
+  subtitle: string
+  title: string
 }
 
 export type Post = {
+  content: string
   id: string
   meta: PostMeta
-  content: string
 }
